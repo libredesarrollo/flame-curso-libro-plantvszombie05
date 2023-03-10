@@ -33,19 +33,12 @@ class MyGame extends FlameGame
     // add(PeashooterComponent());
     // add(CaptusComponent()..position = Vector2(position.dx, position.dy));
 
-    if (Random().nextInt(3) <= 1) {
-      var p = CactusComponent(sizeMap: background.tiledMap.size)
-        ..position = Vector2(position.x, position.y);
-      var fac = sizeSeed.y / p.size.y;
-      p.size *= fac;
-      add(p);
-    } else {
-      var p = PeashooterComponent(sizeMap: background.tiledMap.size)
-        ..position = Vector2(position.x, position.y);
-      var fac = sizeSeed.y / p.size.y;
-      p.size *= fac;
-      add(p);
-    }
+    //var p = CactusComponent(sizeMap: background.tiledMap.size)
+    var p = PeashooterComponent(sizeMap: background.tiledMap.size)
+      ..position = Vector2(position.x, position.y);
+    var fac = sizeSeed.y / p.size.y;
+    p.size *= fac;
+    add(p);
 
     return true;
   }

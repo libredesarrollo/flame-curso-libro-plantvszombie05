@@ -7,9 +7,10 @@ class SeedComponent extends PositionComponent with Tappable {
   // 48 / 25  = 2
   MyGame game;
   bool sown = false;
+  bool busy = false;
   SeedComponent({required size, required position, required this.game})
       : super(size: size, position: position) {
-    debugMode = false;
+    debugMode = true;
 
     add(RectangleHitbox()..collisionType = CollisionType.passive);
   }
@@ -17,7 +18,7 @@ class SeedComponent extends PositionComponent with Tappable {
   @override
   bool onTapDown(TapDownInfo info) {
     //info.raw.localPosition
-    if (!sown) {
+    if (!sown && !busy) {
       if (game.addPlant(position, size)) {
         sown = true;
       }

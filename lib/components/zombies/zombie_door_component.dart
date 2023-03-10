@@ -33,7 +33,8 @@ class ZombieDoorComponent extends ZombieComponent {
 
     animation = walkingAnimation;
 
-    body = RectangleHitbox()
+    body = RectangleHitbox(
+        size: Vector2(spriteSheetWidth, spriteSheetHeight - alignZombie))
       ..collisionType = CollisionType.active;
     add(body);
 

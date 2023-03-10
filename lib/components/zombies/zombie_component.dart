@@ -5,7 +5,7 @@ import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
 import 'package:plantvszombie05/map/seed_component.dart';
 
-const double alignZombie = 20;
+const double alignZombie = 10;
 
 class ZombieComponent extends SpriteAnimationComponent with CollisionCallbacks {
   late SpriteAnimation walkingAnimation, walkingHurtAnimation, eatingAnimation;
@@ -56,6 +56,7 @@ class ZombieComponent extends SpriteAnimationComponent with CollisionCallbacks {
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is SeedComponent) {
+      other.busy = true;
       _setChannel(true);
     }
 
@@ -88,6 +89,11 @@ class ZombieComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
   @override
   void onCollisionEnd(PositionComponent other) {
+    if (other is SeedComponent) {
+      other.busy = false;
+      other.sown = false;
+    }
+
     if (other is PlantComponent) {
       isAttacking = false;
       attack = false;
@@ -124,12 +130,12 @@ class ZombieComponent extends SpriteAnimationComponent with CollisionCallbacks {
     } else if (position.y + alignZombie == 336) {
       enemiesInChannel[6] = value;
     }
-    print(enemiesInChannel.toString());
+    // print(enemiesInChannel.toString());
   }
+
   @override
   void onRemove() {
     _setChannel(false);
     super.onRemove();
   }
-
 }
