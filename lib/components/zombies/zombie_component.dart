@@ -3,11 +3,13 @@ import 'package:flame/components.dart';
 import 'package:plantvszombie05/components/plants/plant_component.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
+import 'package:plantvszombie05/main.dart';
 import 'package:plantvszombie05/map/seed_component.dart';
 
 const double alignZombie = 10;
 
-class ZombieComponent extends SpriteAnimationComponent with CollisionCallbacks {
+class ZombieComponent extends SpriteAnimationComponent
+    with CollisionCallbacks, HasGameRef<MyGame> {
   late SpriteAnimation walkingAnimation, walkingHurtAnimation, eatingAnimation;
 
   bool isAttacking = false;
@@ -28,6 +30,10 @@ class ZombieComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
   @override
   void update(double dt) {
+    if (game.resetGame) {
+      removeFromParent();
+    }
+
     if (!isAttacking) position.add(Vector2(-dt * speed, 0));
 
     if (elapsedTimeAtacking > 2) {

@@ -10,14 +10,14 @@ import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 
 class ZombieDoorComponent extends ZombieComponent {
   ZombieDoorComponent({required position}) : super(position) {
-    spriteSheetWidth = 29.2;
-    spriteSheetHeight = 52;
+    spriteSheetWidth = 34;
+    spriteSheetHeight = 48;
     size = Vector2(spriteSheetWidth, spriteSheetHeight);
   }
 
   @override
   FutureOr<void> onLoad() async {
-    final spriteImage = await Flame.images.load('ZombieDoor.png');
+    final spriteImage = await Flame.images.load('ZombieDoorFinal.png');
 
     final spriteSheet = SpriteSheet(
         image: spriteImage,
@@ -25,11 +25,11 @@ class ZombieDoorComponent extends ZombieComponent {
 
     // walkingAnimation = spriteSheet.createAnimationByLimit(xInit: 0, yInit: 5, step: 6, sizeX: 19, stepTime: .2);
     walkingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 0, step: 6, sizeX: 19, stepTime: .2);
+        xInit: 0, yInit: 0, step: 6, sizeX: 6, stepTime: .2);
     walkingHurtAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 2, yInit: 4, step: 6, sizeX: 19, stepTime: .2);
+        xInit: 2, yInit: 0, step: 6, sizeX: 6, stepTime: .2);
     eatingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 0, step: 6, sizeX: 19, stepTime: .2);
+        xInit: 1, yInit: 0, step: 6, sizeX: 6, stepTime: .2);
 
     animation = walkingAnimation;
 

@@ -2,10 +2,28 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
+import 'package:plantvszombie05/main.dart';
 
 enum State { idle, shoot }
 
-class PlantComponent extends SpriteAnimationComponent with CollisionCallbacks {
+enum Plants { peashooter, cactus }
+
+class PlantCost {
+  static const peashooter = 20;
+  static const cactus = 30;
+
+  static int cost(Plants plant) {
+    switch (plant) {
+      case Plants.peashooter:
+        return peashooter;
+      case Plants.cactus:
+        return cactus;
+    }
+  }
+}
+
+class PlantComponent extends SpriteAnimationComponent
+    with CollisionCallbacks, HasGameRef<MyGame> {
   double spriteSheetWidth = 50, spriteSheetHeight = 50;
 
   int life = 100;
@@ -24,6 +42,10 @@ class PlantComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
   @override
   void update(double dt) {
+    if (game.resetGame) {
+      removeFromParent();
+    }
+
     if (enemiesInChannel[(position.y / sizeTileMap).toInt() - 1]) {
       if (state != State.shoot) {
         animation = shootAnimation;
@@ -39,11 +61,14 @@ class PlantComponent extends SpriteAnimationComponent with CollisionCallbacks {
     super.update(dt);
   }
 
-  void shoot(String sprite, Vector2 position){
+  void shoot(String sprite, Vector2 position) {
     shootAnimation.onComplete = () async {
-      add(ProjectileComponent(projectile: await Sprite.load(sprite), sizeMap: sizeMap, position: position, damage: damage));
+      add(ProjectileComponent(
+          projectile: await Sprite.load(sprite),
+          sizeMap: sizeMap,
+          position: position,
+          damage: damage));
       shootAnimation.reset();
     };
   }
-
 }
