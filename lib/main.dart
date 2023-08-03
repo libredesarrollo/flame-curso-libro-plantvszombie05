@@ -1,7 +1,9 @@
 import 'dart:async';
-import 'dart:math';
-
+import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
+
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 import 'package:flame/game.dart';
 import 'package:plantvszombie05/components/plants/cactus_component.dart';
@@ -18,7 +20,7 @@ import 'package:plantvszombie05/overlay/plant_overlay.dart';
 import 'package:plantvszombie05/overlay/sun_overlay.dart';
 
 class MyGame extends FlameGame
-    with HasCollisionDetection, HasTappables /*TapDetector*/ {
+    with HasCollisionDetection, HasTappablesBridge /*TapDetector*/ {
   late TileMapComponent background;
 
   double elapsepTime = 0;
@@ -30,6 +32,8 @@ class MyGame extends FlameGame
   final List<bool> plantsAddedInMap = [false, false];
 
   bool resetGame = false;
+
+  late AudioPlayer audioWalk;
 
   reset() {
     resetGame = true;
@@ -118,6 +122,25 @@ class MyGame extends FlameGame
     return false;
   }
 
+  _zombieWalkAudio() {
+    FlameAudio.loop('zombies_many.wav', volume: .4)
+        .then((audioPlayer) => audioWalk = audioPlayer);
+
+    return super.onLoad();
+  }
+
+  void checkEndGame() {
+    if (zombieI >= enemiesMap1.length - 1) {
+      // ya todos los zombies fueron agregados en el mapa
+      if (countEnemiesInMap == 0) {
+        // no hay enemigos en el mapa
+        print('Fin de juego');
+        paused = true;
+        audioWalk.dispose();
+      }
+    }
+  }
+
   @override
   Color backgroundColor() {
     super.backgroundColor();
@@ -127,9 +150,20 @@ class MyGame extends FlameGame
 
   @override
   void update(double dt) {
+    checkEndGame();
+
     if (elapsepTimeSun > 2) {
       elapsepTimeSun = 0;
       add(SunComponent(game: this, mapSize: background.tiledMap.size));
+    }
+
+    elapsepTimeSun += dt;
+
+    if (elapsepTime > 3.0) {
+      if (zombieI < enemiesMap1.length) {
+        if (zombieI == 0) _zombieWalkAudio();
+
+ckground.tiledMap.size));
     }
 
     elapsepTimeSun += dt;
@@ -171,7 +205,8 @@ void main() {
       'Sun': (context, MyGame game) {
         return SunOverlay(game: game);
       },
-      'Option': (context, MyGame game) {
+      'Option': (context, MyGame game
+) {
         return OptionOverlay(game: game);
       }
     },

@@ -1,5 +1,11 @@
+import 'dart:async';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+
+// import 'package:audioplayers/audioplayers.dart';
+// import 'package:flame_audio/flame_audio.dart';
+
 import 'package:plantvszombie05/components/plants/plant_component.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
@@ -18,14 +24,26 @@ class ZombieComponent extends SpriteAnimationComponent
 
   int life = 100;
   int damage = 20;
+  //String auidoWalkSound = 'zombie1.wav';
 
-  double speed = 12;
+  double speed = 15;
   double spriteSheetWidth = 128, spriteSheetHeight = 128;
   late RectangleHitbox body;
+
+  // late AudioPlayer audioWalk;
 
   ZombieComponent(position) : super(position: position) {
     debugMode = true;
     scale = Vector2.all(1);
+  }
+
+  @override
+  FutureOr<void> onLoad() {
+    countEnemiesInMap++;
+    // FlameAudio.loop(auidoWalkSound, volume: .4)
+    //     .then((audioPlayer) => audioWalk = audioPlayer);
+
+    return super.onLoad();
   }
 
   @override
@@ -43,6 +61,9 @@ class ZombieComponent extends SpriteAnimationComponent
     elapsedTimeAtacking += dt;
 
     if (position.x <= -size.x) {
+      // el zombie ya no esta en el mapa
+      // zombie GANO
+      removeFromParent();
       _setChannel(false);
     }
 
@@ -142,6 +163,8 @@ class ZombieComponent extends SpriteAnimationComponent
   @override
   void onRemove() {
     _setChannel(false);
+    countEnemiesInMap--;
+    // audioWalk.dispose();
     super.onRemove();
   }
 }

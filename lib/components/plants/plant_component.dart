@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/sprite.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
 import 'package:plantvszombie05/main.dart';
@@ -26,6 +29,8 @@ class PlantComponent extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef<MyGame> {
   double spriteSheetWidth = 50, spriteSheetHeight = 50;
 
+  late SpriteAnimationTicker shootAnimationTicker;
+
   int life = 100;
   int damage = 10;
 
@@ -48,6 +53,7 @@ class PlantComponent extends SpriteAnimationComponent
 
     if (enemiesInChannel[(position.y / sizeTileMap).toInt() - 1]) {
       if (state != State.shoot) {
+        // shootAnimationTicker = shootAnimation.createTicker();
         animation = shootAnimation;
       }
       state = State.shoot;
@@ -58,17 +64,33 @@ class PlantComponent extends SpriteAnimationComponent
       state = State.idle;
     }
 
+    shootAnimationTicker.update(dt);
+
     super.update(dt);
   }
 
   void shoot(String sprite, Vector2 position) {
-    shootAnimation.onComplete = () async {
-      add(ProjectileComponent(
-          projectile: await Sprite.load(sprite),
-          sizeMap: sizeMap,
-          position: position,
-          damage: damage));
-      shootAnimation.reset();
+    shootAnimationTicker.onFrame = (value) async {
+      if (shootAnimationTicker.isLastFrame) {
+        if (state == State.shoot) {
+          print("********DISPARANDO");
+          add(ProjectileComponent(
+              projectile: await Sprite.load(sprite),
+              sizeMap: sizeMap,
+              position: position,
+              damage: damage));
+          shootAnimationTicker.reset();
+        }
+      }
     };
+
+    // shootAnimation.onComplete = () async {
+    //   add(ProjectileComponent(
+    //       projectile: await Sprite.load(sprite),
+    //       sizeMap: sizeMap,
+    //       position: position,
+    //       damage: damage));
+    //   // shootAnimation.reset();
+    // };
   }
 }

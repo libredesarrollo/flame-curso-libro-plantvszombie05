@@ -16,6 +16,7 @@ class ZombieConeComponent extends ZombieComponent {
     spriteSheetHeight = 56;
     size = Vector2(spriteSheetWidth, spriteSheetHeight);
     speed = 15;
+    // auidoWalkSound = 'zombie2.wav';
   }
 
   @override

@@ -15,7 +15,6 @@ class PeashooterComponent extends PlantComponent {
 
   @override
   void onLoad() async {
-
     // life = 10000;
 
     final spriteImage = await Flame.images.load('PlantPeashooter.png');
@@ -29,8 +28,11 @@ class PeashooterComponent extends PlantComponent {
     idleAnimation = spriteSheetIdle.createAnimationByLimit(
         xInit: 0, yInit: 0, step: 8, sizeX: 8, stepTime: .2);
     shootAnimation = spriteSheetShoot.createAnimationByLimit(
-        xInit: 1, yInit: 0, step: 3, sizeX: 8, stepTime: .8, loop: false);
+        xInit: 1, yInit: 0, step: 3, sizeX: 8, stepTime: .8); // lopppppXXXXX
     animation = idleAnimation;
+
+    shootAnimationTicker = shootAnimation.createTicker();
+
     shoot('PlantPeashooterProjectile.png', Vector2(27, 2));
 
     body =

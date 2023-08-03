@@ -1,9 +1,10 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/src/gestures/events.dart';
+import 'package:flame/events.dart';
+
 import 'package:plantvszombie05/main.dart';
 
-class SeedComponent extends PositionComponent with Tappable {
+class SeedComponent extends PositionComponent with TapCallbacks {
   // 48 / 25  = 2
   MyGame game;
   bool sown = false;
@@ -16,13 +17,13 @@ class SeedComponent extends PositionComponent with Tappable {
   }
 
   @override
-  bool onTapDown(TapDownInfo info) {
+  void onTapDown(TapDownEvent event) {
     //info.raw.localPosition
     if (!sown && !busy) {
       if (game.addPlant(position, size)) {
         sown = true;
       }
     }
-    return super.onTapDown(info);
+    super.onTapDown(event);
   }
 }

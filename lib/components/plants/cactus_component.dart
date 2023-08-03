@@ -29,6 +29,9 @@ class CactusComponent extends PlantComponent {
     shoot('PlantCactusProjectile.png', Vector2(spriteSheetWidth, 12));
 
     animation = idleAnimation;
+
+    shootAnimationTicker = shootAnimation.createTicker();
+
     body = RectangleHitbox(
         size: Vector2(spriteSheetWidth, spriteSheetHeight - alignZombie))
       ..collisionType = CollisionType.active;
