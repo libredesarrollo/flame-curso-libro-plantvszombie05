@@ -30,11 +30,14 @@ class ZombieComponent extends SpriteAnimationComponent
   double spriteSheetWidth = 128, spriteSheetHeight = 128;
   late RectangleHitbox body;
 
+  Vector2 positionCopy = Vector2(0, 0);
+
   // late AudioPlayer audioWalk;
 
   ZombieComponent(position) : super(position: position) {
     debugMode = true;
     scale = Vector2.all(1);
+    positionCopy = position;
   }
 
   @override
@@ -52,7 +55,10 @@ class ZombieComponent extends SpriteAnimationComponent
       removeFromParent();
     }
 
-    if (!isAttacking) position.add(Vector2(-dt * speed, 0));
+    if (!isAttacking) {
+      position.add(Vector2(-dt * speed, 0));
+      positionCopy.add(Vector2(-dt * speed, 0));
+    }
 
     if (elapsedTimeAtacking > 2) {
       elapsedTimeAtacking = 0;
@@ -133,6 +139,14 @@ class ZombieComponent extends SpriteAnimationComponent
     }
   }
 
+  @override
+  void onGameResize(Vector2 size) {
+    scale = Vector2.all(gameRef.factScale);
+    position = positionCopy * gameRef.factScale;
+
+    super.onGameResize(size);
+  }
+
   // @override
   // void onCollisionEnd(PositionComponent other) {
   //   if (other is SeedComponent) {
@@ -142,19 +156,19 @@ class ZombieComponent extends SpriteAnimationComponent
   // }
 
   _setChannel(bool value) {
-    if (position.y + alignZombie == 48) {
+    if (positionCopy.y + alignZombie == 48) {
       enemiesInChannel[0] = value;
-    } else if (position.y + alignZombie == 96) {
+    } else if (positionCopy.y + alignZombie == 96) {
       enemiesInChannel[1] = value;
-    } else if (position.y + alignZombie == 144) {
+    } else if (positionCopy.y + alignZombie == 144) {
       enemiesInChannel[2] = value;
-    } else if (position.y + alignZombie == 192) {
+    } else if (positionCopy.y + alignZombie == 192) {
       enemiesInChannel[3] = value;
-    } else if (position.y + alignZombie == 240) {
+    } else if (positionCopy.y + alignZombie == 240) {
       enemiesInChannel[4] = value;
-    } else if (position.y + alignZombie == 288) {
+    } else if (positionCopy.y + alignZombie == 288) {
       enemiesInChannel[5] = value;
-    } else if (position.y + alignZombie == 336) {
+    } else if (positionCopy.y + alignZombie == 336) {
       enemiesInChannel[6] = value;
     }
     // print(enemiesInChannel.toString());

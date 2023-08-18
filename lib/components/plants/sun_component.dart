@@ -1,18 +1,16 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flame/collisions.dart';
+import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
-import 'package:flame/src/gestures/events.dart';
-import 'package:flutter/material.dart';
 import 'package:plantvszombie05/main.dart';
 
 import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 
-class SunComponent extends SpriteAnimationComponent with Tappable {
+class SunComponent extends SpriteAnimationComponent with TapCallbacks {
   SunComponent({required this.game, required this.mapSize}) : super() {
     debugMode = true;
     size = Vector2(circleWidth, circleHeight);
@@ -70,9 +68,9 @@ class SunComponent extends SpriteAnimationComponent with Tappable {
   }
 
   @override
-  bool onTapDown(TapDownInfo info) {
+  void onTapDown(TapDownEvent event) {
     removeFromParent();
     game.addSuns(5);
-    return false;
+    super.onTapDown(event);
   }
 }

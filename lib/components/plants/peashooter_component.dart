@@ -7,7 +7,8 @@ import 'package:plantvszombie05/components/plants/plant_component.dart';
 import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 
 class PeashooterComponent extends PlantComponent {
-  PeashooterComponent({required sizeMap}) : super(sizeMap) {
+  PeashooterComponent({required sizeMap, required position})
+      : super(sizeMap, position) {
     spriteSheetWidth = 27;
     spriteSheetHeight = 31;
     size = Vector2(spriteSheetWidth, spriteSheetHeight);

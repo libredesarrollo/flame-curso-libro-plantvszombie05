@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
@@ -31,6 +29,8 @@ class PlantComponent extends SpriteAnimationComponent
 
   late SpriteAnimationTicker shootAnimationTicker;
 
+  Vector2 positionOriginal = Vector2.all(0);
+
   int life = 100;
   int damage = 10;
 
@@ -40,8 +40,9 @@ class PlantComponent extends SpriteAnimationComponent
   State state = State.idle;
   Vector2 sizeMap;
 
-  PlantComponent(this.sizeMap) : super() {
+  PlantComponent(this.sizeMap, position) : super(position: position) {
     debugMode = true;
+    positionOriginal = position;
     scale = Vector2.all(1);
   }
 
@@ -51,7 +52,7 @@ class PlantComponent extends SpriteAnimationComponent
       removeFromParent();
     }
 
-    if (enemiesInChannel[(position.y / sizeTileMap).toInt() - 1]) {
+    if (enemiesInChannel[(positionOriginal.y / sizeTileMap).toInt() - 1]) {
       if (state != State.shoot) {
         // shootAnimationTicker = shootAnimation.createTicker();
         animation = shootAnimation;
@@ -92,5 +93,13 @@ class PlantComponent extends SpriteAnimationComponent
     //       damage: damage));
     //   // shootAnimation.reset();
     // };
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    scale = Vector2.all(gameRef.factScale);
+    position = positionOriginal * gameRef.factScale;
+
+    super.onGameResize(size);
   }
 }
