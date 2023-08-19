@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-// import 'package:audioplayers/audioplayers.dart';
-// import 'package:flame_audio/flame_audio.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 import 'package:plantvszombie05/components/plants/plant_component.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
@@ -24,7 +24,7 @@ class ZombieComponent extends SpriteAnimationComponent
 
   int life = 100;
   int damage = 20;
-  //String auidoWalkSound = 'zombie1.wav';
+  String audioWalkSound = 'zombie1.wav';
 
   double speed = 15;
   double spriteSheetWidth = 128, spriteSheetHeight = 128;
@@ -32,7 +32,7 @@ class ZombieComponent extends SpriteAnimationComponent
 
   Vector2 positionCopy = Vector2(0, 0);
 
-  // late AudioPlayer audioWalk;
+  late AudioPlayer audioWalk;
 
   ZombieComponent(position) : super(position: position) {
     debugMode = true;
@@ -43,8 +43,8 @@ class ZombieComponent extends SpriteAnimationComponent
   @override
   FutureOr<void> onLoad() {
     countEnemiesInMap++;
-    // FlameAudio.loop(auidoWalkSound, volume: .4)
-    //     .then((audioPlayer) => audioWalk = audioPlayer);
+    FlameAudio.loop(audioWalkSound, volume: .4)
+        .then((audioPlayer) => audioWalk = audioPlayer);
 
     return super.onLoad();
   }
@@ -178,7 +178,7 @@ class ZombieComponent extends SpriteAnimationComponent
   void onRemove() {
     _setChannel(false);
     countEnemiesInMap--;
-    // audioWalk.dispose();
+    audioWalk.dispose();
     super.onRemove();
   }
 }
