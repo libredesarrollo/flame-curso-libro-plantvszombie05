@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame_audio/flame_audio.dart';
 
 import 'package:plantvszombie05/components/plants/plant_component.dart';
@@ -15,7 +16,7 @@ import 'package:plantvszombie05/map/seed_component.dart';
 const double alignZombie = 10;
 
 class ZombieComponent extends SpriteAnimationComponent
-    with CollisionCallbacks, HasGameRef<MyGame> {
+    with CollisionCallbacks, HasGameReference<MyGame> {
   late SpriteAnimation walkingAnimation, walkingHurtAnimation, eatingAnimation;
 
   bool isAttacking = false;
@@ -141,8 +142,8 @@ class ZombieComponent extends SpriteAnimationComponent
 
   @override
   void onGameResize(Vector2 size) {
-    scale = Vector2.all(gameRef.factScale);
-    position = positionCopy * gameRef.factScale;
+    scale = Vector2.all(game.factScale);
+    position = positionCopy * game.factScale;
 
     super.onGameResize(size);
   }

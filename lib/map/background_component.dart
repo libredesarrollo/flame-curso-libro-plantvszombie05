@@ -1,22 +1,25 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:flutter/material.dart';
+import 'package:flame/experimental.dart';
+
 import 'package:plantvszombie05/main.dart';
 
 class BackgroundComponent extends PositionComponent
-    with HasGameRef<MyGame>, DragCallbacks {
+    with HasGameReference<MyGame>, DragCallbacks {
   late RectangleComponent _rectangleComponent;
 
   @override
   FutureOr<void> onLoad() {
-    size = gameRef.size;
+    size = game.size;
     // scale = Vector2.all(1);
 
     _rectangleComponent = RectangleComponent(
         position: Vector2.all(0),
-        size: gameRef.size,
+        size: game.size,
         paint: Paint()..color = Colors.purple);
 
     add(_rectangleComponent);
@@ -33,7 +36,7 @@ class BackgroundComponent extends PositionComponent
   @override
   void onDragUpdate(DragUpdateEvent event) {
     final camera =
-        gameRef.firstChild<CameraComponent>()!; // gameRef.cameraComponent;
+        game.firstChild<CameraComponent>()!; // gameRef.cameraComponent;
     // camera.moveBy(event.delta);
     camera.viewfinder.position += event.delta / camera.viewfinder.zoom;
 

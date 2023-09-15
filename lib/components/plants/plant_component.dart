@@ -1,5 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame/sprite.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
@@ -24,7 +25,7 @@ class PlantCost {
 }
 
 class PlantComponent extends SpriteAnimationComponent
-    with CollisionCallbacks, HasGameRef<MyGame> {
+    with CollisionCallbacks, HasGameReference<MyGame> {
   double spriteSheetWidth = 50, spriteSheetHeight = 50;
 
   late SpriteAnimationTicker shootAnimationTicker;
@@ -97,8 +98,8 @@ class PlantComponent extends SpriteAnimationComponent
 
   @override
   void onGameResize(Vector2 size) {
-    scale = Vector2.all(gameRef.factScale);
-    position = positionOriginal * gameRef.factScale;
+    scale = Vector2.all(game.factScale);
+    position = positionOriginal * game.factScale;
 
     super.onGameResize(size);
   }
