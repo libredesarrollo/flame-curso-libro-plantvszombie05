@@ -25,15 +25,16 @@ class ZombieComponent extends SpriteAnimationComponent
 
   int life = 100;
   int damage = 20;
-  String audioWalkSound = 'zombie1.wav';
+  // String audioWalkSound = 'zombie1.wav';
 
   double speed = 15;
-  double spriteSheetWidth = 128, spriteSheetHeight = 128;
+  double spriteSheetWidth = 430;
+  double spriteSheetHeight = 519;
   late RectangleHitbox body;
 
   Vector2 positionCopy = Vector2(0, 0);
 
-  late AudioPlayer audioWalk;
+  // late AudioPlayer audioWalk;
 
   ZombieComponent(position) : super(position: position) {
     debugMode = true;
@@ -44,8 +45,8 @@ class ZombieComponent extends SpriteAnimationComponent
   @override
   FutureOr<void> onLoad() {
     countEnemiesInMap++;
-    FlameAudio.loop(audioWalkSound, volume: .4)
-        .then((audioPlayer) => audioWalk = audioPlayer);
+    // FlameAudio.loop(audioWalkSound, volume: .4)
+    //     .then((audioPlayer) => audioWalk = audioPlayer);
 
     return super.onLoad();
   }
@@ -179,7 +180,7 @@ class ZombieComponent extends SpriteAnimationComponent
   void onRemove() {
     _setChannel(false);
     countEnemiesInMap--;
-    audioWalk.dispose();
+    // audioWalk.dispose();
     super.onRemove();
   }
 }

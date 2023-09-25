@@ -71,10 +71,7 @@ flutter:
     - assets/images/PlantCactus.png
     - assets/images/PlantPeashooterProjectile.png
     - assets/images/PlantCactusProjectile.png
-    - assets/images/ZombieCone.png
-    - assets/images/ZombieConeFinal.png
-    - assets/images/ZombieDoor.png
-    - assets/images/ZombieDoorFinal.png
+    - assets/images/zombieMale.png
     - assets/images/tile.png
     - assets/tiles/map.tmx
     - assets/tiles/map.tsx

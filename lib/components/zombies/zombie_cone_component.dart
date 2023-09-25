@@ -24,18 +24,18 @@ class ZombieConeComponent extends ZombieComponent {
     // life = 250;
     // damage = 15;
 
-    final spriteImage = await Flame.images.load('ZombieConeFinal.png');
+    final spriteImage = await Flame.images.load('ZombieMale.png');
 
     final spriteSheet = SpriteSheet(
         image: spriteImage,
         srcSize: Vector2(spriteSheetWidth, spriteSheetHeight));
 
     walkingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 0, step: 6, sizeX: 12, stepTime: .2);
+        xInit: 0, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
     eatingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 7, step: 6, sizeX: 12, stepTime: .2);
+        xInit: 2, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
     walkingHurtAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 1, yInit: 3, step: 5, sizeX: 12, stepTime: .2);
+        xInit: 4, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
 
     animation = walkingAnimation;
 
