@@ -11,8 +11,8 @@ import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 class CactusComponent extends PlantComponent {
   CactusComponent({required sizeMap, required position})
       : super(sizeMap, position) {
-    spriteSheetWidth = 39;
-    spriteSheetHeight = 37;
+    spriteSheetWidth = 1000;
+    spriteSheetHeight = 1000;
     size = Vector2(spriteSheetWidth, spriteSheetHeight);
   }
 
@@ -24,9 +24,9 @@ class CactusComponent extends PlantComponent {
         srcSize: Vector2(spriteSheetWidth, spriteSheetHeight));
 
     idleAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 0, step: 4, sizeX: 6, stepTime: .2);
+        xInit: 0, yInit: 0, step: 3, sizeX: 3, stepTime: .2);
     shootAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 4, step: 2, sizeX: 6, stepTime: .8, loop: false);
+        xInit: 0, yInit: 1, step: 3, sizeX: 3, stepTime: .8, loop: false);
 
     animation = idleAnimation;
 

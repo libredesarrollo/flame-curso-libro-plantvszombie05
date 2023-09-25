@@ -26,7 +26,8 @@ class PlantCost {
 
 class PlantComponent extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameReference<MyGame> {
-  double spriteSheetWidth = 50, spriteSheetHeight = 50;
+  double spriteSheetWidth = 50;
+  double spriteSheetHeight = 50;
 
   late SpriteAnimationTicker shootAnimationTicker;
 
