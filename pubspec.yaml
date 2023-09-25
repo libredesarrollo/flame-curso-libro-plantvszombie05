@@ -72,6 +72,7 @@ flutter:
     - assets/images/PlantPeashooterProjectile.png
     - assets/images/PlantCactusProjectile.png
     - assets/images/zombieMale.png
+    - assets/images/zombieFemale.png
     - assets/images/tile.png
     - assets/tiles/map.tmx
     - assets/tiles/map.tsx
