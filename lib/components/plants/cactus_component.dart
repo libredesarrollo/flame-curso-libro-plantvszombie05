@@ -13,7 +13,7 @@ class CactusComponent extends PlantComponent {
       : super(sizeMap, position) {
     spriteSheetWidth = 1000;
     spriteSheetHeight = 1000;
-    size = Vector2(spriteSheetWidth, spriteSheetHeight);
+    size = Vector2(40, 40);
   }
 
   @override

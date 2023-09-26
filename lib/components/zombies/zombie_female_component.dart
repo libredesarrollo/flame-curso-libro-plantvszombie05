@@ -12,7 +12,7 @@ class ZombieFemaleComponent extends ZombieComponent {
   ZombieFemaleComponent({required position}) : super(position) {
     spriteSheetWidth = 521;
     spriteSheetHeight = 576;
-    size = Vector2(spriteSheetWidth, spriteSheetHeight);
+    size = Vector2(37, 56);
   }
 
   @override
@@ -34,7 +34,7 @@ class ZombieFemaleComponent extends ZombieComponent {
     animation = walkingAnimation;
 
     body = RectangleHitbox(
-        size: Vector2(spriteSheetWidth, spriteSheetHeight - alignZombie))
+        /*size: Vector2(spriteSheetWidth, spriteSheetHeight - alignZombie)*/)
       ..collisionType = CollisionType.active;
     add(body);
 

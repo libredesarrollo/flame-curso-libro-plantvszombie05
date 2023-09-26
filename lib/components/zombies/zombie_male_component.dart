@@ -12,9 +12,9 @@ class ZombieMaleComponent extends ZombieComponent {
   ZombieMaleComponent({required position}) : super(position) {
     // spriteSheetWidth = 27.6;
     // spriteSheetHeight = 55.5;
-    spriteSheetWidth = 37.4;
-    spriteSheetHeight = 56;
-    size = Vector2(spriteSheetWidth, spriteSheetHeight);
+    spriteSheetWidth = 430;
+    spriteSheetHeight = 519;
+    size = Vector2(37, 56);
     speed = 15;
     // auidoWalkSound = 'zombie2.wav';
   }

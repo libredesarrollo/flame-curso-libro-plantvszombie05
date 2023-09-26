@@ -11,7 +11,7 @@ class PeashooterComponent extends PlantComponent {
       : super(sizeMap, position) {
     spriteSheetWidth = 433;
     spriteSheetHeight = 433;
-    size = Vector2(spriteSheetWidth, spriteSheetHeight);
+    size = Vector2(30, 30);
   }
 
   @override
