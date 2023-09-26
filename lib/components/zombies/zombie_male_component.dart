@@ -31,11 +31,11 @@ class ZombieMaleComponent extends ZombieComponent {
         srcSize: Vector2(spriteSheetWidth, spriteSheetHeight));
 
     walkingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
-    walkingHurtAnimation = spriteSheet.createAnimationByLimit(
         xInit: 2, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
-    eatingAnimation = spriteSheet.createAnimationByLimit(
+    walkingHurtAnimation = spriteSheet.createAnimationByLimit(
         xInit: 4, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
+    eatingAnimation = spriteSheet.createAnimationByLimit(
+        xInit: 0, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
 
     animation = walkingAnimation;
 

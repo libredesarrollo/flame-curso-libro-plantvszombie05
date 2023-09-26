@@ -24,12 +24,12 @@ class ZombieFemaleComponent extends ZombieComponent {
         srcSize: Vector2(spriteSheetWidth, spriteSheetHeight));
 
     // walkingAnimation = spriteSheet.createAnimationByLimit(xInit: 0, yInit: 5, step: 6, sizeX: 19, stepTime: .2);
-    walkingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 0, step: 8, sizeX: 3, stepTime: .2);
     eatingAnimation = spriteSheet.createAnimationByLimit(
+        xInit: 0, yInit: 0, step: 8, sizeX: 3, stepTime: .2);
+    walkingAnimation = spriteSheet.createAnimationByLimit(
         xInit: 3, yInit: 3, step: 10, sizeX: 3, stepTime: .2);
     walkingHurtAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 7, yInit: 0, step: 10, sizeX: 3, stepTime: .2);
+        xInit: 6, yInit: 0, step: 9, sizeX: 3, stepTime: .2);
 
     animation = walkingAnimation;
 
