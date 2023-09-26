@@ -36,7 +36,8 @@ class PlantComponent extends SpriteAnimationComponent
   int life = 100;
   int damage = 10;
 
-  late SpriteAnimation idleAnimation, shootAnimation;
+  late SpriteAnimation idleAnimation;
+  late SpriteAnimation shootAnimation;
   late RectangleHitbox body;
 
   State state = State.idle;
