@@ -13,6 +13,7 @@ import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 class SunComponent extends SpriteAnimationComponent with TapCallbacks {
   SunComponent({required this.game, required this.mapSize}) : super() {
     debugMode = true;
+    size = Vector2.all(30);
     size = Vector2(circleWidth, circleHeight);
   }
 
@@ -21,7 +22,7 @@ class SunComponent extends SpriteAnimationComponent with TapCallbacks {
 
   static const int circleSpeed = 50;
   final int limitX = 80;
-  static const double circleWidth = 26, circleHeight = 26;
+  static const double circleWidth = 180, circleHeight = 180;
   double countSin = 0;
 
   Random random = Random();
