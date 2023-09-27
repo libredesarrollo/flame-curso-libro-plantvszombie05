@@ -11,10 +11,10 @@ import 'package:plantvszombie05/main.dart';
 import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 
 class SunComponent extends SpriteAnimationComponent with TapCallbacks {
-  SunComponent({required this.game, required this.mapSize}) : super() {
+  SunComponent({required this.game, required this.mapSize})
+      : super(size: Vector2.all(30)) {
     debugMode = true;
-    size = Vector2.all(30);
-    size = Vector2(circleWidth, circleHeight);
+    ;
   }
 
   MyGame game;

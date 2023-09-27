@@ -22,19 +22,17 @@ class PeashooterComponent extends PlantComponent {
     final spriteSheetIdle = SpriteSheet(
         image: spriteImage,
         srcSize: Vector2(spriteSheetWidth, spriteSheetHeight));
-    final spriteSheetShoot = SpriteSheet(
-        image: spriteImage,
-        srcSize: Vector2(spriteSheetWidth - 2, spriteSheetHeight));
 
     idleAnimation = spriteSheetIdle.createAnimationByLimit(
         xInit: 0, yInit: 0, step: 3, sizeX: 3, stepTime: .2);
-    shootAnimation = spriteSheetShoot.createAnimationByLimit(
+    shootAnimation = spriteSheetIdle.createAnimationByLimit(
         xInit: 1, yInit: 0, step: 3, sizeX: 3, stepTime: .8);
+
     animation = idleAnimation;
 
     shootAnimationTicker = shootAnimation.createTicker();
 
-    shoot('PlantPeashooterProjectile.png', Vector2(27, 2));
+    shoot('PlantPeashooterProjectile.png', Vector2(27, 20));
 
     body =
         RectangleHitbox(/*size: Vector2(spriteSheetWidth, spriteSheetHeight)*/);

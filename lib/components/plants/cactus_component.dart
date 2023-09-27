@@ -26,13 +26,13 @@ class CactusComponent extends PlantComponent {
     idleAnimation = spriteSheet.createAnimationByLimit(
         xInit: 0, yInit: 0, step: 3, sizeX: 3, stepTime: .2);
     shootAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 1, step: 3, sizeX: 3, stepTime: .8, loop: false);
+        xInit: 0, yInit: 1, step: 3, sizeX: 3, stepTime: .8);
 
     animation = idleAnimation;
 
     shootAnimationTicker = shootAnimation.createTicker();
 
-    shoot('PlantCactusProjectile.png', Vector2(spriteSheetWidth, 12));
+    shoot('PlantCactusProjectile.png', Vector2(30, 12));
 
     body = RectangleHitbox();
     add(body);
