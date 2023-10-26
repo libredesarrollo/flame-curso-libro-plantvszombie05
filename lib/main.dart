@@ -1,5 +1,4 @@
 import 'package:flame/components.dart';
-import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flame/game.dart';
@@ -18,9 +17,7 @@ import 'package:plantvszombie05/overlay/plant_overlay.dart';
 import 'package:plantvszombie05/overlay/sun_overlay.dart';
 
 class MyGame extends FlameGame
-    with
-        HasCollisionDetection,
-        HasTappablesBridge /* ,
+    with HasCollisionDetection /* ,
         HasDraggablesBridge TapDetector*/
 {
   TileMapComponent? background;

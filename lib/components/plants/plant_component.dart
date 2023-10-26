@@ -1,6 +1,5 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
 import 'package:flame/sprite.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';

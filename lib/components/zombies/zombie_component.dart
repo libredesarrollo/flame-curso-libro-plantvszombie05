@@ -4,7 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 // import 'package:audioplayers/audioplayers.dart';
-import 'package:flame/experimental.dart';
+
 import 'package:flame_audio/flame_audio.dart';
 
 import 'package:plantvszombie05/components/plants/plant_component.dart';

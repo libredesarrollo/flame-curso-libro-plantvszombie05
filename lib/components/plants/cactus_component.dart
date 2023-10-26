@@ -4,7 +4,6 @@ import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
 import 'package:plantvszombie05/components/plants/plant_component.dart';
-import 'package:plantvszombie05/components/zombies/zombie_component.dart';
 
 import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 
