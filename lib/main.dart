@@ -7,8 +7,8 @@ import 'package:plantvszombie05/components/plants/peashooter_component.dart';
 import 'package:plantvszombie05/components/plants/plant_component.dart';
 import 'package:plantvszombie05/components/plants/sun_component.dart';
 import 'package:plantvszombie05/components/zombies/zombie_component.dart';
-import 'package:plantvszombie05/components/zombies/zombie_cone_component.dart';
-import 'package:plantvszombie05/components/zombies/zombie_door_component.dart';
+import 'package:plantvszombie05/components/zombies/zombie_male_component.dart';
+import 'package:plantvszombie05/components/zombies/zombie_female_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
 import 'package:plantvszombie05/map/background_component.dart';
 import 'package:plantvszombie05/map/tile_map_component.dart';
@@ -164,11 +164,11 @@ class MyGame extends FlameGame
     if (elapsepTime > 3.0) {
       if (zombieI < enemiesMap1.length) {
         if (enemiesMap1[zombieI].typeEnemy == TypeEnemy.zombie1) {
-          world.add(ZombieConeComponent(
+          world.add(ZombieMaleComponent(
               position: Vector2(background!.tiledMap.size.x,
                   enemiesMap1[zombieI].position - alignZombie)));
         } else {
-          world.add(ZombieDoorComponent(
+          world.add(ZombieFemaleComponent(
               position: Vector2(background!.tiledMap.size.x,
                   enemiesMap1[zombieI].position - alignZombie)));
         }

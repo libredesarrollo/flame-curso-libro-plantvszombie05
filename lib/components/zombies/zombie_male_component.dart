@@ -4,17 +4,18 @@ import 'package:flame/collisions.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/input.dart';
 import 'package:flame/sprite.dart';
+import 'package:flutter/material.dart';
 
 import 'package:plantvszombie05/components/zombies/zombie_component.dart';
 import 'package:plantvszombie05/utils/create_animation_by_limit.dart';
 
-class ZombieConeComponent extends ZombieComponent {
-  ZombieConeComponent({required position}) : super(position) {
+class ZombieMaleComponent extends ZombieComponent {
+  ZombieMaleComponent({required position}) : super(position) {
     // spriteSheetWidth = 27.6;
     // spriteSheetHeight = 55.5;
-    spriteSheetWidth = 37.4;
-    spriteSheetHeight = 56;
-    size = Vector2(spriteSheetWidth, spriteSheetHeight);
+    spriteSheetWidth = 430;
+    spriteSheetHeight = 519;
+    size = Vector2(37, 56);
     speed = 15;
     // auidoWalkSound = 'zombie2.wav';
   }
@@ -24,22 +25,25 @@ class ZombieConeComponent extends ZombieComponent {
     // life = 250;
     // damage = 15;
 
-    final spriteImage = await Flame.images.load('ZombieConeFinal.png');
+    final spriteImage = await Flame.images.load('ZombieMale.png');
 
     final spriteSheet = SpriteSheet(
         image: spriteImage,
         srcSize: Vector2(spriteSheetWidth, spriteSheetHeight));
 
     walkingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 0, step: 6, sizeX: 12, stepTime: .2);
-    eatingAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 0, yInit: 7, step: 6, sizeX: 12, stepTime: .2);
+        xInit: 2, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
     walkingHurtAnimation = spriteSheet.createAnimationByLimit(
-        xInit: 1, yInit: 3, step: 5, sizeX: 12, stepTime: .2);
+        xInit: 4, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
+    eatingAnimation = spriteSheet.createAnimationByLimit(
+        xInit: 0, yInit: 0, step: 8, sizeX: 4, stepTime: .2);
 
     animation = walkingAnimation;
 
-    body = RectangleHitbox()..collisionType = CollisionType.active;
+    body = RectangleHitbox(
+        size: Vector2(size.x, size.y - alignZombie),
+        position: Vector2(0, alignZombie))
+      ..collisionType = CollisionType.active;
     add(body);
 
     return super.onLoad();
