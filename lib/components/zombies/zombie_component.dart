@@ -5,8 +5,6 @@ import 'package:flame/components.dart';
 
 // import 'package:audioplayers/audioplayers.dart';
 
-import 'package:flame_audio/flame_audio.dart';
-
 import 'package:plantvszombie05/components/plants/plant_component.dart';
 import 'package:plantvszombie05/components/plants/projectile_component.dart';
 import 'package:plantvszombie05/helpers/enemies/movements.dart';
