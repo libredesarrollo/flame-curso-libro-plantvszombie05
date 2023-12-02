@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:flame/experimental.dart';
 
 import 'package:plantvszombie05/main.dart';
 
@@ -35,12 +34,20 @@ class BackgroundComponent extends PositionComponent
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
-    final camera =
-        game.firstChild<CameraComponent>()!; // gameRef.cameraComponent;
-    // camera.moveBy(event.delta);
-    camera.viewfinder.position += event.delta / camera.viewfinder.zoom;
+    // final camera =
+    //     game.firstChild<CameraComponent>()!; // gameRef.cameraComponent;
+    // // camera.moveBy(event.delta);
+    // camera.viewfinder.position += event.delta / camera.viewfinder.zoom * 2;
+    // print('aaaaaaaaaaaaaaa' +
+    //     event.delta.toString() +
+    //     ' ' +
+    //     event.localDelta.toString());
 
-    position = camera.viewfinder.position;
+    // position = camera.viewfinder.position;
+
+    final camera = game.firstChild<CameraComponent>()!; // game.cameraComponent;
+    // camera.moveBy(event.localDelta);
+    camera.viewfinder.position += event.localDelta / camera.viewfinder.zoom;
 
     super.onDragUpdate(event);
   }
